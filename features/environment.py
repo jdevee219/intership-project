@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-
+from selenium.webdriver.chrome.options import Options
 from app.application import Application
 
 
@@ -10,9 +10,17 @@ def browser_init(context):
     """
     :param context: Behave context
     """
-    driver_path = ChromeDriverManager().install()
-    service = Service(driver_path)
-    context.driver = webdriver.Chrome(service=service)
+
+    # context.driver = webdriver.Chrome()
+
+    ### Other Browsers ###
+    # context.driver = webdriver.Firefox()
+    # context.driver = webdriver.Safari()
+
+    ### HEADLESS MODE ####
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    context.driver = webdriver.Chrome(options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
