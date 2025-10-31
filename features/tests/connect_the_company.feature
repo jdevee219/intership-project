@@ -1,6 +1,7 @@
 Feature: Connect the company
   # Verifying the "Connect the developer" button functionality
 
+  @smoke
   Scenario: Connect the developer opens in new tab
     Given Open the main page
     When Enter email tower219@gmail.com
